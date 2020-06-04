@@ -1,0 +1,7 @@
+*.xlsx
+*.csv
+*.xls
+
+/src/config
+
+.DS_Store
