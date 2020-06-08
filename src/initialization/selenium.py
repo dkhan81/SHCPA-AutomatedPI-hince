@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+
 import os
 from ..constants.directory import *
 
@@ -13,8 +15,9 @@ options.add_experimental_option('prefs', {
 })
 
 # browser 실행
-def makeNewBrowser():
-  browser = webdriver.Chrome(executable_path=os.path.join(INITIALIZATION, "chromedriver"), chrome_options=options)
-  browser.implicitly_wait(10)
-
-  return browser
+class ChromeWebDriver:
+  def __init__(self):
+    super().__init__()
+    self.browser = webdriver.Chrome(executable_path=os.path.join(INITIALIZATION, "chromedriver"), chrome_options=options)
+    self.browser.implicitly_wait(10)
+    self.wait = WebDriverWait(self.browser, 30)

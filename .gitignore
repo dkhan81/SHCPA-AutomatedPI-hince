@@ -3,5 +3,6 @@
 *.xls
 
 /src/config
+/src/browser_automation/download
 
 .DS_Store

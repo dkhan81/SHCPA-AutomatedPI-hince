@@ -3,15 +3,17 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 import time
 
-from ..util.util import *
-from ..constants.directory import *
+from ..util.file import *
+from ..constants import directory
+from ..constants import url
 from ..config.access import *
 
 
-browser = makeNewBrowser()
-browser.get('https://pin.wconcept.co.kr/')
+chrome_instance = ChromeWebDriver()
+browser = chrome_instance.browser
+wait = chrome_instance.wait
 
-wait = WebDriverWait(browser, 30)
+browser.get(url.WCONCEPT_URL)
 
 # original window 저장
 original_window = browser.current_window_handle
@@ -33,7 +35,7 @@ if(len(browser.window_handles) > 1):
 
 
 browser.switch_to.window(browser.window_handles[0])
-browser.get("https://newpin.wconcept.co.kr/Order/ShippingOrderComplete")
+browser.get(url.WCONCEPT_ORDERLIST_URL)
 
 # 날짜 지정
 
@@ -48,13 +50,13 @@ down_req_alert = wait.until(expected_conditions.alert_is_present())
 down_req_alert.accept()
 
 # 기존 파일 삭제
-deleteFile(BROWSER_AUTOMATION_DOWNLOAD, 'wconcept.xlsx')
+delete_file(directory.BROWSER_AUTOMATION_DOWNLOAD, 'wconcept.xlsx')
 
 # 파일 다운로드 대기
-time.sleep(8)
+time.sleep(10)
 
 # 파일 다운로드 후 이름 변경
-changeLatestFileName(BROWSER_AUTOMATION_DOWNLOAD, 'wconcept.xlsx')
+change_latest_filename(directory.BROWSER_AUTOMATION_DOWNLOAD, 'wconcept.xlsx')
 
 browser.quit()
 

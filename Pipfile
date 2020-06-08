@@ -12,6 +12,7 @@ beautifulsoup4 = "*"
 pyautogui = "*"
 flask = "*"
 mysql-connector-python = "*"
+openpyxl = "*"
 
 [requires]
 python_version = "3.7"
