@@ -3,7 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 import time
 
-from ..util.file import *
+from ..util import file
 from ..constants import directory
 from ..constants import url
 from ..config.access import *
@@ -36,7 +36,7 @@ down_req_alert = wait.until(expected_conditions.alert_is_present())
 down_req_alert.accept()
 
 # 기존 파일 삭제
-delete_file(directory.BROWSER_AUTOMATION_DOWNLOAD, 'cafe24.csv')
+file.delete_file(directory.BROWSER_AUTOMATION_DOWNLOAD, 'cafe24.csv')
 
 # 파일 다운로드
 browser.find_element_by_css_selector(".center tr:first-child td:last-child a").click()
@@ -45,7 +45,7 @@ browser.find_element_by_css_selector(".center tr:first-child td:last-child a").c
 time.sleep(10)
 
 # 파일 다운로드 후 이름 변경
-change_latest_filename(directory.BROWSER_AUTOMATION_DOWNLOAD, 'cafe24.csv')
+file.change_latest_filename(directory.BROWSER_AUTOMATION_DOWNLOAD, 'cafe24.csv')
 
 browser.quit()
 

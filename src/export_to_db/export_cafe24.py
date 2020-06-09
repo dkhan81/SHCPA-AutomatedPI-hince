@@ -11,19 +11,29 @@ parsed_list = parse_csv(BROWSER_AUTOMATION_DOWNLOAD + "/" + "cafe24.csv")
 # set an empty list for storing results
 parsed_list_to_export = []
 
+# for i in range(10):
+#   print(parsed_list[i])
 
 for item in parsed_list[1:]:
-  # align each row according to table schema
-  channel = 'cafe24'
-  order_number = item[1]
-  product_name = item[6]
-  product_price = int(float(item[9]))
-  quantity = int(item[8])
-  shipping_fee = 0
-  total_price = product_price * quantity
-  order_date = item[0][0:4] + "-" + item[0][4:6] + "-" + item[0][6:8]
 
-  parsed_list_to_export.append((channel, order_number, product_name, product_price, quantity, shipping_fee, total_price, order_date))
+    # align each row according to table schema
+  row = {
+    "channel" : 'cafe24',
+    "order_number" : item[0],
+    "product_name" : item[13],
+    "product_price" : int(float(item[14])),
+    "quantity" : int(item[15]),
+    "shipping_fee" : int(float(item[18])),
+    "total_price" : int(float(item[16])),
+    "paid_price" : int(float(item[22])),
+    "order_date" : item[3],
+    "paid_date" : item[4],
+    "shipped_date" : item[5],
+    "refunded_date" : item[6],
+  }
+  
+
+  parsed_list_to_export.append(tuple(row.values()))
 
 # execute the query to export data
 exec_multiple_queries(query.CAFE24_INSERT, parsed_list_to_export)
