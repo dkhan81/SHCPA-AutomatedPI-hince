@@ -1,7 +1,10 @@
 from openpyxl import load_workbook
 import csv
+import xlrd
+import pandas as pd
 
-def parse_xls(location):
+
+def parse_xlsx(location):
   load_wb = load_workbook(location, data_only=True)
   load_ws = load_wb.active
   
@@ -15,3 +18,9 @@ def parse_csv(location):
       parsed_list.append(row)
 
   return parsed_list
+
+
+# As Samwon's xls file internally equals to html file, it should be parsed and converted to python list
+def convert_html_to_list(location):
+  tables = pd.read_html(location)
+  return tables[0].values.tolist()

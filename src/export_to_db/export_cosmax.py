@@ -1,4 +1,4 @@
-from ..util.parse_list_file import parse_xlsx
+from ..util.parse_list_file import convert_html_to_list
 from ..constants import directory
 from ..initialization.mysql import *
 from ..util import db
@@ -6,7 +6,7 @@ from ..constants import query
 
 
 # load a csv file into list
-parsed_list = parse_xlsx(directory.BROWSER_AUTOMATION_DOWNLOAD + "/" + "wconcept.xlsx")
+parsed_list = convert_html_to_list(directory.BROWSER_AUTOMATION_DOWNLOAD + "/" + "samwon.xls")
 
 # set an empty list for storing results
 parsed_list_to_export = []
@@ -14,7 +14,7 @@ parsed_list_to_export = []
 
 for item in parsed_list[1:]:
 
-  # align each row according to table schema
+  # align each row according to the table schema
   row = {
     "channel" : 'wconcept',
     "order_number" : item[5],

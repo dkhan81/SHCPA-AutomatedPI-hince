@@ -14,7 +14,6 @@ def exec_multiple_queries(query_str, input_params=""):
   try:
     cursor = mysqlInstance.cursor()
     cursor.executemany(query_str, input_params)
-
     return cursor.fetchall()
   except Exception as err:
     print(err)
