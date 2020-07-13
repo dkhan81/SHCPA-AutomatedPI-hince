@@ -6,7 +6,7 @@ import time
 from ..util.file import *
 from ..constants import directory
 from ..constants import url
-from ..config.access import *
+from ..config import access
 
 
 chrome_instance = ChromeWebDriver()
@@ -19,8 +19,8 @@ browser.get(url.WCONCEPT_URL)
 original_window = browser.current_window_handle
 
 # 로그인
-browser.find_element_by_css_selector("#userid").send_keys('vivawave')
-browser.find_element_by_css_selector("#pw").send_keys('vivahince4040!')
+browser.find_element_by_css_selector("#userid").send_keys(access.WEB_ACCESS_INFO['wconcept']['id'])
+browser.find_element_by_css_selector("#pw").send_keys(access.WEB_ACCESS_INFO['wconcept']['pw'])
 browser.find_element_by_css_selector(".login-form__button").click()
 
 # 팝업창 뜰 때까지 기다리기

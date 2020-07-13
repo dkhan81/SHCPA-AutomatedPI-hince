@@ -6,34 +6,35 @@ from ..constants import query
 
 
 # load a csv file into list
-parsed_list = parse_xlsx(directory.BROWSER_AUTOMATION_DOWNLOAD + "/" + "wconcept.xlsx")
+parsed_list = parse_xlsx(directory.BROWSER_AUTOMATION_DOWNLOAD + "/" + "naver_storefarm.xlsx")
 
 # set an empty list for storing results
 parsed_list_to_export = []
 
-
 for item in parsed_list[1:]:
 
-  # align each row according to table schema
+  # align each row according to the table schema
   row = {
-    "channel" : 'wconcept',
-    "order_number" : item[5],
-    "product_name" : item[12],
-    "product_price" : int(float(item[19])),
+    "channel" : 'naver_storefarm',
+    "order_number" : item[0],
+    "product_name" : item[13],
+    "product_price" : int(float(item[17])),
     "quantity" : int(item[16]),
-    "shipping_fee" : int(float(item[20])),
+    "shipping_fee" : int(float(item[38])),
     "total_price": 0,
     "paid_price": 0,
-    "order_date" : item[1] + " " + item[2] + ":00",
-    "paid_date" : item[1] + " " + item[2] + ":00",
-    "shipped_date" : item[3] + " 00:00:00",
+    "order_date" : item[22],
+    "paid_date" : item[22],
+    "shipped_date" : item[23],
     "refunded_date" : "",
+    "address": item[43]
   }
 
+  row['product_name'] = row['product_name'].replace("[공식] [hince] 힌스 ", "")
   row['total_price'] = row['product_price'] * row['quantity'] + row['shipping_fee']
   row['paid_price'] = row['product_price'] * row['quantity'] + row['shipping_fee']
 
   parsed_list_to_export.append(tuple(row.values()))
 
 # execute the query to export data
-db.exec_multiple_queries(query.WCONCEPT_INSERT, parsed_list_to_export)
+db.exec_multiple_queries(query.NAVER_STOREFARM_INSERT, parsed_list_to_export)

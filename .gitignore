@@ -2,7 +2,7 @@
 *.csv
 *.xls
 
-.vscode
+/.vscode
 /src/config
 /src/browser_automation/download/*
 

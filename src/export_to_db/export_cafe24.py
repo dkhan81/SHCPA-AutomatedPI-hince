@@ -11,12 +11,11 @@ parsed_list = parse_csv(BROWSER_AUTOMATION_DOWNLOAD + "/" + "cafe24.csv")
 # set an empty list for storing results
 parsed_list_to_export = []
 
-# for i in range(10):
-#   print(parsed_list[i])
-
 for item in parsed_list[1:]:
+  if item[14] == '판매가':
+    continue
 
-    # align each row according to table schema
+    # align each row according to the table schema
   row = {
     "channel" : 'cafe24',
     "order_number" : item[0],
@@ -30,8 +29,9 @@ for item in parsed_list[1:]:
     "paid_date" : item[4],
     "shipped_date" : item[5],
     "refunded_date" : item[6],
+    "address": item[24],
   }
-  
+
 
   parsed_list_to_export.append(tuple(row.values()))
 

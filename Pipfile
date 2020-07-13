@@ -13,9 +13,13 @@ pyautogui = "*"
 flask = "*"
 mysql-connector-python = "*"
 openpyxl = "*"
+xlrd = "*"
+pandas = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.7"
 
 [scripts]
 start = "python -m src.main"
+test = "python -m src.test"
