@@ -1,4 +1,4 @@
-from ..util.parse_list_file import parse_xlsv
+from ..util.parse_list_file import parse_xlsx
 from ..constants import directory
 from ..initialization.mysql import *
 from ..util import db
@@ -6,7 +6,7 @@ from ..constants import query
 
 
 # load a csv file into list
-parsed_list = parse_xlsv(directory.BROWSER_AUTOMATION_DOWNLOAD + "/" + "naver_storefarm.xlsx")
+parsed_list = parse_xlsx(directory.BROWSER_AUTOMATION_DOWNLOAD + "/" + "naver_storefarm.xlsx")
 
 # set an empty list for storing results
 parsed_list_to_export = []
