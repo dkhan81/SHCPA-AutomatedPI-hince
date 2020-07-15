@@ -5,6 +5,7 @@
 ## (초기 실행 시) 의존성 패키지 설치
 
 `pipenv install`
+`pip3 install pipenv`
 
 ## 실행
 
